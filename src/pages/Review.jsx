@@ -18,10 +18,8 @@ const Review = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 🔒 Tunggu sampai AuthContext selesai memuat
     if (authLoading) return;
 
-    // 🔒 Jika tidak login, redirect ke home
     if (!token) {
       alert("Silakan login untuk melihat pembahasan.");
       navigate("/");
@@ -44,7 +42,7 @@ const Review = () => {
           alert(
             "Tidak dapat mengakses pembahasan. Pastikan Anda telah menyelesaikan ujian ini."
           );
-          navigate("/"); // redirect jika tidak punya akses
+          navigate("/");
           return;
         }
 
@@ -79,13 +77,11 @@ const Review = () => {
   const userAnswer = currentQ.user_answer;
   const correctAnswer = currentQ.correct_answer;
 
-  // Fungsi untuk mendapatkan label opsi
   const getOptionLabel = (key) => {
     const options = currentQ.options || {};
     return options[key] || key;
   };
 
-  // Status warna tombol daftar soal
   const getStatusColor = (q) => {
     if (q.is_correct) return "bg-green-500";
     if (q.user_answer === undefined) return "bg-gray-300";
@@ -133,10 +129,6 @@ const Review = () => {
               <div className="flex items-center">
                 <div className="w-3 h-3 bg-red-500 rounded mr-1"></div>
                 <span>Salah</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 bg-gray-300 rounded mr-1"></div>
-                <span>Tidak Menjawab</span>
               </div>
             </div>
           </div>

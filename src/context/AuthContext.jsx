@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [authChecked, setAuthChecked] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
 
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) => {
       setToken(storedToken);
       setIsLoggedIn(true);
     }
+    setAuthChecked(true);
     setLoading(false);
   }, []);
 
@@ -51,6 +53,7 @@ export const AuthProvider = ({ children }) => {
         token,
         showLogin,
         setShowLogin,
+        authChecked,
         login,
         logout,
         loading,
